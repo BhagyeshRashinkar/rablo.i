@@ -69,14 +69,6 @@ app.post("/", (req, res) => {
 
 })
 
-app.get("/get", (req, res) => {
-    Product.find().then((products) => {
-        res.send(products);
-    }).catch((err) => {
-        res.send(err);
-    });
-})
-
 app.get("/update/:_id", (req, res)=>{
     const { _id } = req.params;
     Product.findOne({_id}).then((product)=>{

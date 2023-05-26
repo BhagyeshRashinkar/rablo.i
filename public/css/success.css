@@ -1,0 +1,36 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: #f4f4f4;
+  }
+
+  .success-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+
+  .success-icon {
+    font-size: 80px;
+    color: #2ecc71;
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    color: #333;
+    margin-bottom: 10px;
+  }
+
+  p {
+    color: #555;
+    margin-bottom: 20px;
+  }
+
+  .back-link {
+    color: #2ecc71;
+    text-decoration: none;
+  }

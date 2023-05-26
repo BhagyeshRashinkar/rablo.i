@@ -1,6 +1,5 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const session = require("express-session");
 const dotenv = require("dotenv");
 dotenv.config();
 
@@ -10,18 +9,6 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
-app.set('trust proxy', 1);
-
-app.use(session({
-cookie:{
-    secure: true,
-    maxAge:60000
-       },
-store: new RedisStore(),
-secret: 'secret',
-saveUninitialized: true,
-resave: false
-}));
 app.set('view engine', 'ejs');
 
 const mongoURL = process.env.MONGOURI;
@@ -52,20 +39,11 @@ app.get('/', (req, res) => {
 })
 
 app.get('/success', (req, res) => {
-    if (req.session.success) {
-        res.render('success');
-    } else {
-        res.redirect('/');
-    }
+    res.render('success');
 })
 
 app.get('/error', (req, res) => {
-    if (req.session.errorOccurred) {
-        delete req.session.errorOccurred;
-        res.render('failure');
-    } else {
-        res.redirect('/');
-    }
+    res.render('failure');
 })
 
 
@@ -84,10 +62,8 @@ app.post("/", (req, res) => {
     });
 
     product.save().then((savedProduct) => {
-        req.session.success = true;
         res.redirect('/success');
     }).catch((err) => {
-        req.session.errorOccurred = true;
         res.redirect('/error');
     })
 
